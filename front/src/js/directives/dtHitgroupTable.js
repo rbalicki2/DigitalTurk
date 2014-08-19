@@ -37,6 +37,8 @@ angular.module('digitalturk')
           }
         };
 
+        window.expandedRatings = scope.expandedRatings;
+
         setTimeout(function() {
           // elem does not exist during link
           elem.find('.initial-hide').removeClass('initial-hide');
