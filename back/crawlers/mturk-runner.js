@@ -36,7 +36,7 @@ function crawlerLoop() {
         tasksComplete++;
         if (tasksComplete === PAGES_TO_CRAWL) {
           HitGroup.massUpdate(eis);
-          setTimeout(crawlerLoop, 5000);
+          setTimeout(crawlerLoop, 10000);
         }
 
         setTimeout(callback, 2000);

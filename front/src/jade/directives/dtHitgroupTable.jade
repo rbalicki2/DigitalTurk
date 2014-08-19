@@ -62,10 +62,10 @@ table.table-striped.table-hover.table.table-condensed(style="max-width:100%;")
             li
               a(bo-href="UrlService.turkoRequesterLookup(hitgroup.requester.requesterId)" target="_blank") Turkopticon
       td.center(dt-colorizer value="hitgroup.requester.rate_avg" bo-text="hitgroup.requester.rate_avg | number:2")
-      td.center.expanded-rating.initial-hide(dt-colorizer value="hitgroup.requester.rate_comm" bo-text="hitgroup.requester.rate_comm | number:2")
-      td.center.expanded-rating.initial-hide(dt-colorizer value="hitgroup.requester.rate_pay"  bo-text="hitgroup.requester.rate_pay | number:2")
-      td.center.expanded-rating.initial-hide(dt-colorizer value="hitgroup.requester.rate_fair"  bo-text="hitgroup.requester.rate_fair | number:2")
-      td.center.expanded-rating.initial-hide(dt-colorizer value="hitgroup.requester.rate_fast"  bo-text="hitgroup.requester.rate_fast | number:2")
+      td.center.expanded-rating(dt-colorizer value="hitgroup.requester.rate_comm" bo-text="hitgroup.requester.rate_comm | number:2")
+      td.center.expanded-rating(dt-colorizer value="hitgroup.requester.rate_pay"  bo-text="hitgroup.requester.rate_pay | number:2")
+      td.center.expanded-rating(dt-colorizer value="hitgroup.requester.rate_fair"  bo-text="hitgroup.requester.rate_fair | number:2")
+      td.center.expanded-rating(dt-colorizer value="hitgroup.requester.rate_fast"  bo-text="hitgroup.requester.rate_fast | number:2")
       td
         div(dt-limit limit="40" message="hitgroup.name")
       td(bo-text="hitgroup.hitsAvailable | number:0")
