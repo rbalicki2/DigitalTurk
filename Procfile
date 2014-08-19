@@ -1,1 +1,1 @@
-web: node back/app.js turko
+web: node back/app.js
