@@ -1034,7 +1034,6 @@ angular.module('digitalturk')
             elem.find('.expanded-rating').hide();
             scope.show.condensedRatings = true;
             elem.find('.initial-hide').removeClass('initial-hide');
-            
           }
         };
 
@@ -1049,9 +1048,11 @@ angular.module('digitalturk')
 
         scope.max = function(key) {
           var max = 0;
-          for (var i = 0; i < scope.hitgroups.length; i++) {
-            if (scope.hitgroups[i][key] > max) max = scope.hitgroups[i][key];
-          } 
+          if (scope.SearchService.hitgroups) {
+            for (var i = 0; i < scope.SearchService.hitgroups.length; i++) {
+              if (SearchService.hitgroups[i][key] > max) max = SearchService.hitgroups[i][key];
+            } 
+          }
           return max;
         };
 
