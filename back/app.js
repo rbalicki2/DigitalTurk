@@ -24,7 +24,7 @@ var db = mongoose.connection;
 var app = express(),
   httpServer = http.createServer(app);
 
-app.set('port', process.env.port || 1337);
+app.set('port', process.env.PORT || 1337);
 app.use(logger('dev'));
 app.use(favicon(path.join(__dirname, '../front/public/images/favicon.ico')));
 app.use(cookieParser());
