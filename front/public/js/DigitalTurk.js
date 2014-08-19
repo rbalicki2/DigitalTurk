@@ -1027,12 +1027,14 @@ angular.module('digitalturk')
             elem.find('.condensed-rating').hide();
             elem.find('.expanded-rating').show();
             scope.show.condensedRatings = false;
+            elem.find('.initial-hide').removeClass('initial-hide');
           },
           hide: function() {
             elem.find('.condensed-rating').show();
             elem.find('.expanded-rating').hide();
             scope.show.condensedRatings = true;
-
+            elem.find('.initial-hide').removeClass('initial-hide');
+            
           }
         };
 
