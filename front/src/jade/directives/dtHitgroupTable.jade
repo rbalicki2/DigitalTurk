@@ -1,0 +1,78 @@
+b starred ids : {{starredIds}}
+
+table.table-striped.table-hover.table.table-condensed(style="max-width:100%;")
+  thead
+    tr
+      th
+        span.fa.fa-star.gold-star(ng-click="SearchService.toggleSortStarred()" ng-class="{'gold-star-full':SearchService.showStarred}")
+      th
+      th(colspan="{{nColumns.requester()}}") Requester
+      th(colspan="{{nColumns.hitgroup()}}") HIT group
+      th(colspan="{{nColumns.details()}}") Details
+    tr
+      th 
+      th 
+      th Requester 
+        span(dt-sort-icon key="requester.name")
+      th Average rating   
+        a.condensed-rating(href="" ng-click="expandedRatings.show()") 
+          span.fa.fa-plus
+        a.expanded-rating(href="" ng-click="expandedRatings.hide()") 
+          span.fa.fa-minus
+        span(dt-sort-icon key="requester.rate_avg")
+        span(dt-sliders template="rate")
+      th.expanded-rating Comm
+        span(dt-sort-icon key="requester.rate_comm")
+      th.expanded-rating Pay
+        span(dt-sort-icon key="requester.rate_pay")
+      th.expanded-rating Fairness
+        span(dt-sort-icon key="requester.rate_fair")
+      th.expanded-rating Speed
+        span(dt-sort-icon key="requester.rate_fast")
+      th Name
+        span(dt-sort-icon key="name")
+      th HITs
+        span(dt-sort-icon key="hitsAvailable")
+        span(dt-sliders template="hitsAvailable" custom-data="max('hitsAvailable')")
+      th Reward
+        span(dt-sort-icon key="reward")
+        span(dt-sliders template="reward" custom-data="max('reward')")
+      th(ng-show="shpw.expirationDate") Expires
+        span(dt-sort-icon key="expirationDate")
+      th Time
+        span(dt-sort-icon key="timeAllotted")
+      th Description
+      th Qualifications
+      th Keywords
+  tbody
+    tr.main-table-row(bindonce="hitgroup" ng-repeat="hitgroup in SearchService.hitgroups | filter:SearchService.quickSearch | filter:SearchService.filterFunction | dtOrderBy: sortArray")
+      td
+        span.fa.fa-star.gold-star(ng-click="SearchService.toggleStar(hitgroup.hitGroupId)" bo-show="hitgroup.hitGroupId" ng-class="{'gold-star-full':SearchService.isStarred(hitgroup.hitGroupId)}")
+      td
+        a(bo-href="UrlService.previewHit(hitgroup.hitGroupId)" bo-show="hitgroup.hitGroupId" target="_blank" bo-text="$index + '.'")
+        a(bo-href="UrlService.searchForHit(hitgroup.name, hitgroup.requester.name)" bo-show="!hitgroup.hitGroupId" target="_blank" bo-text="$index + '.'")
+      td
+        span(dt-limit limit="30" message="hitgroup.requester.name")   
+        span.dropdown(is-open="nameDropdown")
+          a.dropdown-toggle(href='') 
+            span.fa.fa-angle-down
+          ul.dropdown-menu(role="menu" style="")
+            li
+              a(bo-href="UrlService.mturkRequesterLookup(hitgroup.requester.requesterId)" target="_blank") Mechanical Turk
+            li
+              a(bo-href="UrlService.turkoRequesterLookup(hitgroup.requester.requesterId)" target="_blank") Turkopticon
+      td.center(dt-colorizer value="hitgroup.requester.rate_avg" bo-text="hitgroup.requester.rate_avg | number:2")
+      td.center.expanded-rating.initial-hide(dt-colorizer value="hitgroup.requester.rate_comm" bo-text="hitgroup.requester.rate_comm | number:2")
+      td.center.expanded-rating.initial-hide(dt-colorizer value="hitgroup.requester.rate_pay"  bo-text="hitgroup.requester.rate_pay | number:2")
+      td.center.expanded-rating.initial-hide(dt-colorizer value="hitgroup.requester.rate_fair"  bo-text="hitgroup.requester.rate_fair | number:2")
+      td.center.expanded-rating.initial-hide(dt-colorizer value="hitgroup.requester.rate_fast"  bo-text="hitgroup.requester.rate_fast | number:2")
+      td
+        div(dt-limit limit="40" message="hitgroup.name")
+      td(bo-text="hitgroup.hitsAvailable | number:0")
+      td(bo-text="hitgroup.reward | currency")
+      td(ng-show="showExpirationDate" bo-text="hitgroup.expirationDate | date:shortDate")
+      td(bo-text="hitgroup.timeAllotted | dtJuration")
+      td
+        div(dt-limit limit="40" message="hitgroup.description")
+      td(bo-text="hitgroup.qualifications | dtQualifications")
+      td(bo-text="hitgroup.keywords | dtKeywords")

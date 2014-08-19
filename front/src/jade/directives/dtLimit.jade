@@ -1,0 +1,4 @@
+span.short-message-container(ng-show="messageObscured" text="shortMessage")
+  span.short-message
+  a(href="" ng-click="messageObscured=false").fa.fa-ellipsis-h
+span.full-message(ng-show="!messageObscured" text="message")

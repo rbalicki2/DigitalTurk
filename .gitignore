@@ -1,0 +1,5 @@
+node_modules
+.sass-cache
+DigitalTurk.sublime-project
+DigitalTurk.sublime-workspace
+.DS_Store

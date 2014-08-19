@@ -1,0 +1,19 @@
+div.wide-area
+  span.fa.fa-times.upper-right(ng-click="closeModalNoSave()")
+  h4 Filter by rating
+  p Only requesters whose ratings fall in the following ranges will be shown:
+  table.table-striped.table-hover.table.table-condensed
+    thead
+      tr
+        th Rating
+        th Min
+        th Max
+    tbody
+      tr(dt-slider key="requester.rate_avg" label="Average" range="[1,5]")
+      tr(dt-slider key="requester.rate_comm" label="Communication" range="[1,5]")
+      tr(dt-slider key="requester.rate_pay" label="Payment" range="[1,5]")
+      tr(dt-slider key="requester.rate_fair" label="Fairness" range="[1,5]")
+      tr(dt-slider key="requester.rate_fast" label="Speed" range="[1,5]")
+  div.center
+    button.dt-button.btn.btn-default.btn-primary(ng-click="closeModalAndSave()" type="button")
+      span.fa.fa-check  Okay

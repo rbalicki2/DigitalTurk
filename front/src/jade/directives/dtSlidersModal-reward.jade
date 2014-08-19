@@ -1,0 +1,15 @@
+div.wide-area
+  span.fa.fa-times.upper-right(ng-click="closeModalNoSave()")
+  h4 Filter by reward
+  p Only HIT groups with HIT reward in the following range will be shown:
+  table.table-striped.table-hover.table.table-condensed
+    thead
+      tr
+        th Rating
+        th Min
+        th Max
+    tbody
+      tr(dt-slider key="reward" prefix="$" label="Reward" range="[0,0.1,0.5,{{customData}}]" n-digits=2 log="true")
+  div.center
+    button.dt-button.btn.btn-default.btn-primary(ng-click="closeModalAndSave()" type="button")
+      span.fa.fa-check  Okay

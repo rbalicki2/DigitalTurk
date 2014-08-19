@@ -1,0 +1,7 @@
+td {{label}}
+td {{prefix}}{{val()[0] | number:nDigits }}
+td {{prefix}}{{val()[1] | number:nDigits }}
+td.slider-area
+  .slider
+td
+  button.btn.btn-default.btn-primary.btn-sm(ng-click="resetValues()") Reset
