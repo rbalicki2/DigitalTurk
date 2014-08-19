@@ -37,6 +37,7 @@ angular.module('digitalturk')
           }
         };
 
+
         window.expandedRatings = scope.expandedRatings;
 
         setTimeout(function() {
