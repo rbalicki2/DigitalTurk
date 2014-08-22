@@ -1004,7 +1004,8 @@ angular.module('digitalturk')
       templateUrl: 'public/directives/dtHitgroupTable.html',
       scope: {
       },
-      link: function(scope, elem, attrs) {
+      link: function(scope, elem, attrs, controller) {
+        console.log(arguments);
 
         scope.UrlService = UrlService;
 

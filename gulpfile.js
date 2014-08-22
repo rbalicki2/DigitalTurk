@@ -5,7 +5,11 @@ var gulp = require('gulp'),
     jade = require('gulp-jade'),
     pkg = require('./package.json'),
     wrapper = require('gulp-wrapper'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    plumber = require('gulp-plumber'),
+    pipeErrorStop = require('pipe-error-stop'),
+    through2 = require('through2'),
+    chalk = require('chalk');
 
 gulp.task('js-front', function() {
   return gulp
@@ -14,14 +18,35 @@ gulp.task('js-front', function() {
     .pipe(gulp.dest('front/public/js/'));
 });
 
+var logFile = function(name) {
+  return through2.obj(function(file, encoding, done) {
+    console.log(chalk.cyan('logfile ' + name))
+    console.log(file.contents.toString().substring(0,100));
+    this.push(file);
+    done();
+  });
+};
+
 gulp.task('sass', function() {
+  // console.log('sass task')
   return gulp
     .src(['front/src/variables.json', 'front/src/sass/**/*.sass'])
+    // .src(['front/src/sass/**/*.sass'])
+    // .src(['front/src/variables.json'])
+    // .pipe(plumber())
+    // .pipe(logFile('1'))
     .pipe(jsonSass({
       sass: true
     }))
+    .pipe(logFile('2'))
     .pipe(concat(pkg.name + '.sass'))
-    .pipe(sass())
+    // .pipe(through2.obj())
+    .pipe(pipeErrorStop(logFile('loggaaahh')))
+    // .pipe(pipeErrorStop(sass(), {
+      // log: true
+    // }))
+    // .pipe(sass())
+    .pipe(logFile('3'))
     .pipe(gulp.dest('front/public/stylesheets/'));
 });
 
